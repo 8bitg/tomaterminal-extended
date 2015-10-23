@@ -40,23 +40,29 @@ def progress(count, total, suffix=''):
     filled_len = int(round(progress_bar_length * count / float(total)))
     percents = round(100.0 * count / float(total), 1)
     bar = '=' * filled_len + '-' * (progress_bar_length - filled_len)
-    sys.stdout.write('[%s] %s%s %s\r' % (bar, percents, '%', suffix))
+    sys.stdout.write("\r[%s] %s%s %s" % (bar, percents, '%', suffix)),
     sys.stdout.flush()
 
 # Initial Entry into Program; Clear Screen
-print("Task time: %sm -- Break time: %sm -- Task: %s" % (task_time, break_time, task_name))
 while True:
+
     # Task Loop
     progress(0,task_time,'Working: %smin to go on %s' % (task_time, task_name))
     for i in range(0, task_time):
-        ellapsedTime = task_time - i;
+        ellapsedTime = task_time - i
+        if ellapsedTime < 10:
+            ellapsedTime = str(ellapsedTime).zfill(2)
         time.sleep(seconds_minute)
         progress(i,task_time,'Working: %smin to go on %s' % (ellapsedTime, task_name))
-        alert()
-        # Break Loop
+
+    alert()
+
+    # Break Loop
     progress(0,task_time,'Break: %smin left' % break_time)
     for i in range(0, break_time):
-        ellapsedTime = task_time - i;
+        breakTimeEllapsed = break_time - i;
+        breakTimeEllapsed = str(ellapsedTime).zfill(2)
         time.sleep(seconds_minute)
-        progress(i,break_time,'Break: %smin left' % ellapsedTime)
-        alert()
+        progress(i,break_time,'Break: %smin left' % breakTimeEllapsed)
+
+    alert()
