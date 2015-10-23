@@ -21,6 +21,7 @@ hours_day = 24
 task_time = 25
 break_time = 5
 task_name = "current task"
+pomo_num = 0
 
 # Override task/break time if command line arguments passed
 if args.task_time is not None:
@@ -45,7 +46,8 @@ def progress(count, total, suffix=''):
 
 # Initial Entry into Program; Clear Screen
 while True:
-    sys.stdout.write("Task time: %sm -- Break time: %sm -- Task: %s\n" % (task_time, break_time, task_name)),
+
+    sys.stdout.write("Task time: %sm -- Break time: %sm -- Task: %s -- Pomodoros: %s\n" % (task_time, break_time, task_name, pomo_num)),
     # Task Loop
     progress(0,task_time,'Working: %smin to go on %s' % (task_time, task_name))
     for i in range(0, task_time):
@@ -66,3 +68,5 @@ while True:
         progress(i,break_time,'Break: %smin left' % breakTimeEllapsed)
 
     alert()
+    print ('')
+    pomo_num = pomo_num + 1
