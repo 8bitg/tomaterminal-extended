@@ -45,7 +45,7 @@ def progress(count, total, suffix=''):
 
 # Initial Entry into Program; Clear Screen
 while True:
-
+    sys.stdout.write("Task time: %sm -- Break time: %sm -- Task: %s\n" % (task_time, break_time, task_name)),
     # Task Loop
     progress(0,task_time,'Working: %smin to go on %s' % (task_time, task_name))
     for i in range(0, task_time):
