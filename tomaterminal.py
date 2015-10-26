@@ -3,6 +3,8 @@ import time
 import sys
 import argparse
 from time import strftime
+from os import system
+from sys import platform as _platform
 
 # Help String
 description_string = "Tomaterminal is a terminal program based on the Pomodoro (Italian for Tomato) method of working. In the Pomodoro method, you take a timer ((frequently tomato shaped) historically used in kitchens) and you set a 25 minute timer for work. After 25 mintues are completed, you set a 5 minute timer for break. Tomaterminal emulates this exact behavior, alerting you after 25 minutes have elapsed, then after your 5 minute break has elapsed."
@@ -15,7 +17,7 @@ parser.add_argument('-p','--pomo_num', type=str, help='Number of last Pomodoro (
 args = parser.parse_args()
 
 # Time Definitions
-seconds_minute = 60
+seconds_minute = .1
 minutes_hour = 60
 hours_day = 24
 
@@ -33,7 +35,7 @@ if args.break_time is not None:
 if args.task_name is not None:
     task_name = args.task_name
 if args.pomo_num is not None:
-    pomo_num = args.pomo_num
+    pomo_num = int(args.pomo_num)
 
 # UI Definitions
 progress_bar_length = 40
@@ -62,6 +64,8 @@ while True:
         progress(i,task_time,'Working: %smin to go' % ellapsedTime)
 
     alert()
+    if _platform == "darwin":
+        system('say %s minute break starting now. ' % str(break_time))
 
     # Break Loop
     progress(0,task_time,'Break: %smin left - Start-Time: %s' % (break_time, strftime("%Y-%m-%d %H:%M:%S")))
@@ -72,5 +76,7 @@ while True:
         progress(i,break_time,'Break: %smin left' % breakTimeEllapsed)
 
     alert()
-    print ('')
     pomo_num = pomo_num + 1
+    print ('')
+    if _platform == "darwin":
+        system('say %s minute work session starting now.' % str(task_time))
