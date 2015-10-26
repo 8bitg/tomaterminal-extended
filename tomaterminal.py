@@ -67,7 +67,7 @@ while True:
     progress(0,task_time,'Break: %smin left - Start-Time: %s' % (break_time, strftime("%Y-%m-%d %H:%M:%S")))
     for i in range(0, break_time):
         breakTimeEllapsed = break_time - i;
-        breakTimeEllapsed = str(ellapsedTime).zfill(2)
+        breakTimeEllapsed = str(breakTimeEllapsed).zfill(2)
         time.sleep(seconds_minute)
         progress(i,break_time,'Break: %smin left' % breakTimeEllapsed)
 
