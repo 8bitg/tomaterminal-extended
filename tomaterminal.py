@@ -23,7 +23,7 @@ hours_day = 24
 task_time = 25
 break_time = 5
 task_name = "Current Task"
-pomo_num = 0
+pomo_num = 1
 
 # Override task/break time if command line arguments passed
 if args.task_time is not None:
