@@ -53,7 +53,7 @@ while True:
 
     sys.stdout.write("Task time: %sm -- Break time: %sm -- Task: %s -- Pomodoros: %s\n" % (task_time, break_time, task_name, pomo_num)),
     # Task Loop
-    progress(0,task_time,'Working: %smin to go - Start-Time:%s' % (task_time, strftime("%Y-%m-%d %H:%M:%S")))
+    progress(0,task_time,'Working: %smin to go - Start-Time: %s' % (task_time, strftime("%Y-%m-%d %H:%M:%S")))
     for i in range(0, task_time):
         ellapsedTime = task_time - i
         if ellapsedTime < 10:
@@ -64,7 +64,7 @@ while True:
     alert()
 
     # Break Loop
-    progress(0,task_time,'Break: %smin left - Start-Time:%s' % (break_time, strftime("%Y-%m-%d %H:%M:%S")))
+    progress(0,task_time,'Break: %smin left - Start-Time: %s' % (break_time, strftime("%Y-%m-%d %H:%M:%S")))
     for i in range(0, break_time):
         breakTimeEllapsed = break_time - i;
         breakTimeEllapsed = str(ellapsedTime).zfill(2)
