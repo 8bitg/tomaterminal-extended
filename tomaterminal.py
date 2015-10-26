@@ -17,7 +17,7 @@ parser.add_argument('-p','--pomo_num', type=str, help='Number of last Pomodoro (
 args = parser.parse_args()
 
 # Time Definitions
-seconds_minute = .1
+seconds_minute = 60
 minutes_hour = 60
 hours_day = 24
 
