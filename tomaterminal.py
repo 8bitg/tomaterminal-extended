@@ -14,6 +14,7 @@ parser.add_argument('-t','--task_time', type=int, help='Task Interval (minutes)'
 parser.add_argument('-b','--break_time', type=int, help='Break Interval (minutes)',required=False)
 parser.add_argument('-m','--task_name', type=str, help='Task Name (in quotations. ex: "Hello World")',required=False)
 parser.add_argument('-p','--pomo_num', type=str, help='Number of last Pomodoro (useful for taking breaks)',required=False)
+parser.add_argument('-e','--pomo_est', type=str, help='Estimated number of Pomos',required=False)
 args = parser.parse_args()
 
 # Time Definitions
@@ -26,6 +27,7 @@ task_time = 25
 break_time = 5
 task_name = "Current Task"
 pomo_num = 1
+pomo_est = 1
 
 # Override task/break time if command line arguments passed
 if args.task_time is not None:
@@ -36,6 +38,8 @@ if args.task_name is not None:
     task_name = args.task_name
 if args.pomo_num is not None:
     pomo_num = int(args.pomo_num)
+if args.pomo_est is not None:
+    pomo_est = int(args.pomo_est)
 
 # UI Definitions
 progress_bar_length = 40
@@ -53,7 +57,7 @@ def progress(count, total, suffix=''):
 # Initial Entry into Program; Clear Screen
 while True:
 
-    sys.stdout.write("Task time: %sm -- Break time: %sm -- Task: %s -- Pomodoros: %s\n" % (task_time, break_time, task_name, pomo_num)),
+    sys.stdout.write("Task: %sm -- Break: %sm -- Task: %s -- Est_Pomos: %s - Act_Pomos: %s -- Pause/unpause=ctrl-z;fg\n" % (task_time, break_time, task_name, pomo_est, pomo_num)),
     # Task Loop
     progress(0,task_time,'Working: %smin to go - Start-Time: %s' % (task_time, strftime("%Y-%m-%d %H:%M:%S")))
     for i in range(0, task_time):
