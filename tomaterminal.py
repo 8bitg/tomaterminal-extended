@@ -18,7 +18,7 @@ parser.add_argument('-e','--pomo_est', type=str, help='Estimated number of Pomos
 args = parser.parse_args()
 
 # Time Definitions
-seconds_minute = 60
+seconds_minute = 1
 minutes_hour = 60
 hours_day = 24
 
@@ -68,7 +68,7 @@ while True:
         progress(i,task_time,'Working: %smin to go' % ellapsedTime)
 
     alert()
-    if _platform == "darwin":
+    if (_platform == "darwin") or (_platform == "linux2"):
         system('say %s minute break starting now. ' % str(break_time))
 
     # Break Loop
@@ -82,5 +82,5 @@ while True:
     alert()
     pomo_num = pomo_num + 1
     print ('')
-    if _platform == "darwin":
+    if (_platform == "darwin") or (_platform == "linux2"):
         system('say %s minute work session starting now.' % str(task_time))
